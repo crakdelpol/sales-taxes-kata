@@ -84,7 +84,7 @@ public class SalesTaxesMainTest {
 
     private String printReceipt(String input) {
         Cart cart = new Cart(input.split("\n"));
-        return cart.printReceipt(new StringBuilderIPrinter());
+        return cart.printReceipt(new StringBuilderPrinter());
     }
 
 }

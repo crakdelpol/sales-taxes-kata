@@ -6,7 +6,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.List;
 import java.util.Locale;
 
-public class StringBuilderIPrinter implements IPrinter {
+public class StringBuilderPrinter implements IPrinter {
 
 
     @Override
