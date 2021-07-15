@@ -31,18 +31,11 @@ public class ItemFactory {
                 firstSplit = j;
             }
 
-            if (
-                    parameterString.charAt(j) == 'i' &&
-                            parameterIsASpace(parameterString, j - 1) &&
-                            parameterString.charAt(j + 1) == 'm' &&
-                            parameterString.charAt(j + 2) == 'p' &&
-                            parameterIsASpace(parameterString, j + 8)
-            ) {
-
+            if (isImported(parameterString, j)) {
                 imported = true;
             }
 
-            if (parameterString.charAt(j) == 'a' && parameterIsASpace(parameterString, j - 1) && parameterString.charAt(j + 1) == 't' && parameterIsASpace(parameterString, j + 2)) {
+            if (containsAt(parameterString, j)) {
                 description = parameterString.substring(firstSplit + 1, j - 1);
                 price = new BigDecimal(parameterString.substring(j + 3));
             }
@@ -50,5 +43,17 @@ public class ItemFactory {
         }
 
         return new Item(quantity, description, price, imported, items);
+    }
+
+    private static boolean containsAt(String parameterString, int j) {
+        return parameterString.charAt(j) == 'a' && parameterIsASpace(parameterString, j - 1) && parameterString.charAt(j + 1) == 't' && parameterIsASpace(parameterString, j + 2);
+    }
+
+    private static boolean isImported(String parameterString, int j) {
+        return parameterString.charAt(j) == 'i' &&
+                parameterIsASpace(parameterString, j - 1) &&
+                parameterString.charAt(j + 1) == 'm' &&
+                parameterString.charAt(j + 2) == 'p' &&
+                parameterIsASpace(parameterString, j + 8);
     }
 }
